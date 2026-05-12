@@ -34,7 +34,7 @@
 | Handshake Timeouts | Таймауты при установке handshake |
 | Upload / Download  | Текущая пропускная способность   |
 | Telegram DC Status | Состояние upstream-соединений    |
-| ME Writers         | Активность писателей             |
+| ME Writers         | Активность Writers             |
 | Sessions           | Количество активных сессий       |
 | Security Events    | Ошибки и подозрительные события  |
 
