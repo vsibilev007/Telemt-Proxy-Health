@@ -1,47 +1,55 @@
-Мониторинг работоспособности MTProto-прокси Telemt.
+# Telemt Proxy Health
+
+Prometheus exporter + Grafana dashboard для мониторинга MTProto-прокси Telemt.
 
 ## Возможности
 
-* Мониторинг uptime MTProto-прокси
-* Отслеживание входящих и исходящих соединений
-* Подсчёт:
+- Uptime MTProto-прокси
+- Входящие/исходящие соединения
+- Bad connections, handshake timeouts
+- Upload / Download throughput
+- Telegram DC upstream статус
+- ME writers, активные сессии
+- Security-события (desync, relay errors, force pool close)
 
-  * общего количества соединений
-  * плохих соединений
-  * handshake timeout
-* Мониторинг пропускной способности:
+## Метрики
 
-  * upload
-  * download
-* Контроль состояния upstream-подключений к Telegram DC
-* Мониторинг активности:
+| Метрика | Описание |
+|---------|----------|
+| Uptime | Время непрерывной работы прокси |
+| Connections | Входящие/исходящие подключения |
+| Bad Connections | Ошибочные подключения |
+| Handshake Timeouts | Таймауты handshake |
+| Upload / Download | Пропускная способность |
+| Telegram DC Status | Upstream-соединения к Telegram |
+| ME Writers | Активность Writers |
+| Sessions | Количество активных сессий |
+| Security Events | Ошибки и подозрительные события |
 
-  * ME writers
-  * активных сессий
-* Логирование и отслеживание security-событий:
+## Установка
 
-  * desync
-  * relay errors
-  * force pool close
+### 1. Prometheus
 
-## Основные метрики
+Добавь в `prometheus.yml`:
 
-| Метрика            | Описание                         |
-| ------------------ | -------------------------------- |
-| Uptime             | Время непрерывной работы прокси  |
-| Connections        | Входящие/исходящие подключения   |
-| Bad Connections    | Ошибочные подключения            |
-| Handshake Timeouts | Таймауты при установке handshake |
-| Upload / Download  | Текущая пропускная способность   |
-| Telegram DC Status | Состояние upstream-соединений    |
-| ME Writers         | Активность Writers             |
-| Sessions           | Количество активных сессий       |
-| Security Events    | Ошибки и подозрительные события  |
+```yaml
+- job_name: telemt
+  static_configs:
+    - targets: ['127.0.0.1:9090']
+```
 
+### 2. Grafana
 
-## Назначение
+Dashboards → Import → Upload JSON → `grafana-dashboard.json`
 
-Проект предназначен для оперативного мониторинга состояния MTProto-инфраструктуры и быстрого обнаружения проблем с relay, upstream Telegram DC и сетевыми соединениями.
+## Структура
+
+```
+Telemt-Proxy-Health/
+├── README.md
+├── grafana-dashboard.json
+└── prometheus.yml
+```
 
 ## License
 
