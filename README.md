@@ -2,7 +2,7 @@
 
 Prometheus exporter + Grafana dashboard для мониторинга MTProto-прокси Telemt.
 
-**Совместимость:** Telemt 3.4.14 — 3.4.24
+**Совместимость:** Telemt 3.4.14 — 3.4.25
 
 ## Возможности
 
